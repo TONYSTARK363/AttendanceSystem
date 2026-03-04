@@ -10,10 +10,14 @@ import AttendanceRoutes from './routes/attendance.route.js';
 import ReportRoutes from './routes/report.route.js';
 import GenerateCalander from './routes/calenderGenerate.route.js';
 dotenv.config();
-
 const app = express();
 
-
+//Cors Setup
+app.use(
+    cors({
+   origin: 'http://127.0.0.1:5500',
+   credentials: true
+}))
 //Middleware
 app.use(cors());
 app.use(express.json());
