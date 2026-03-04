@@ -1,7 +1,7 @@
 import express from "express";
 import { generateCalendar } from "../controllers/generateCalendar.controller.js";
 import { verifyToken } from "../middleware/authMiddleware.js";
-import { isAdmin } from "../middleware/isAdmin.js";
+import { isAdmin } from "../middleware/IsAdmin.js";
 import Calendar from "../models/calendarSchema.js";
 
 const router = express.Router();
