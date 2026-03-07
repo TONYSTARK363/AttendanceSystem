@@ -15,7 +15,7 @@ const app = express();
 //Cors Setup
 app.use(
     cors({
-   origin: 'https://college6-1.netlify.app',
+   origin: 'https://college611.vercel.app',
    credentials: true
 }))
 //Middleware
