@@ -15,7 +15,7 @@ const app = express();
 //Cors Setup
 app.use(
     cors({
-   origin: 'http://127.0.0.1:5500',
+   origin: 'https://college6-1.netlify.app',
    credentials: true
 }))
 //Middleware
