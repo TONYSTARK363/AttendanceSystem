@@ -26,7 +26,7 @@ export const uploadStudentsExcel = async (req, res) => {
     const students = [];
 
     worksheet.eachRow((row, rowNumber) => {
-      if (rowNumber < 9) return;
+      if (rowNumber ===2 ) return;
        const studentName = row.getCell(1).text;
   const studentId = row.getCell(2).text;
 

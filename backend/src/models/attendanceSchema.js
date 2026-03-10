@@ -11,7 +11,7 @@ const attendanceSchema = new mongoose.Schema(
       required: true
     },
     date: {
-      type: String, // "2026-03-03"
+      type: String,
       required: true
     },
     records: [
@@ -31,5 +31,6 @@ const attendanceSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
+attendanceSchema.index({ department: 1, year: 1, date: 1 }, { unique: true });
 
 export default mongoose.model("Attendance", attendanceSchema);

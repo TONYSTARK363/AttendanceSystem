@@ -1,6 +1,6 @@
 import Attendance from "../models/attendanceSchema.js";
 
-//Present Or Absent Operation
+// Present Or Absent Operation
 export const markAttendance = async (req, res) => {
   try {
     const { date, records } = req.body;
@@ -15,10 +15,11 @@ export const markAttendance = async (req, res) => {
       date
     });
 
+    // If attendance already exists for this date
     if (existing) {
-      existing.records = records;
-      await existing.save();
-      return res.status(200).json({ message: "Attendance Updated" });
+      return res
+        .status(400)
+        .json({ message: "Attendance already marked for this date" });
     }
 
     await Attendance.create({
@@ -35,7 +36,7 @@ export const markAttendance = async (req, res) => {
   }
 };
 
-//fetch/get Attendence By Date
+// fetch/get Attendance By Date
 export const getAttendanceByDate = async (req, res) => {
   try {
     const { date } = req.params;
