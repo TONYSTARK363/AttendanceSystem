@@ -4,7 +4,8 @@ import Student from "../models/studentSchema.js";
 export const uploadStudentsExcel = async (req, res) => {
   try {
 
-    const { department, year } = req.user;
+    const { department } = req.user;
+    const year = req.body.year; 
 
     if (!department || !year) {
       return res.status(400).json({
@@ -26,9 +27,9 @@ export const uploadStudentsExcel = async (req, res) => {
     const students = [];
 
     worksheet.eachRow((row, rowNumber) => {
-      if (rowNumber ===2 ) return;
+      if (rowNumber ===1 ) return;
        const studentName = row.getCell(1).text;
-  const studentId = row.getCell(2).text;
+    const studentId = row.getCell(2).text;
 
       students.push({
         studentName: studentName,

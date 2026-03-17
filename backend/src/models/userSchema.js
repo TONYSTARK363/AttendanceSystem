@@ -3,16 +3,17 @@ import mongoose from 'mongoose';
 const userSchema = new mongoose.Schema({
   department: {
     type: String,
-      required: function () {
-      return this.role === "teacher";
-  }},
+    required: function () {
+      return this.role === "teacher" || this.role === "departmentAdmin";
+    }
+  },
   year: {
     type: Number,
     enum: [1, 2, 3],
-  required: function () {
-    return this.role === "teacher";
-  }
-},
+    required: function () {
+      return this.role === "teacher";
+    }
+  },
   username: {
     type: String,
     required: true,
@@ -22,11 +23,11 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-    role: {
-  type: String,
-  enum: ["admin", "teacher"],
-  default: "teacher"
-}
+  role: {
+    type: String,
+    enum: ["admin", "teacher", "departmentAdmin", "masterAdmin"],
+    default: "teacher"
+  }
 });
 
 export default mongoose.model("User", userSchema);

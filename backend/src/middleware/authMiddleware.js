@@ -19,3 +19,11 @@ export const verifyToken = (req, res, next) => {
     res.status(401).json({ message: "Invalid token" });
   }
 };
+// Middleware to allow only teachers
+export const isTeacher = (req, res, next) => {
+    if (req.user && req.user.role === "teacher") {
+        next();
+    } else {
+        return res.status(403).json({ message: "Not authorized as Teacher" });
+    }
+};

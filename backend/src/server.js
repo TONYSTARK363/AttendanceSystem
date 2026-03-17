@@ -5,26 +5,28 @@ import dotenv from 'dotenv';
 //routes import
 import connectDB from './config/dataBaseConnection.js';
 import authRoutes from './routes/auth.routes.js';
-import studentRoutes from './routes/student.routes.js';
+import studentRoutes from './routes/studentManualRegister.routes.js';
 import AttendanceRoutes from './routes/attendance.route.js';
-import ReportRoutes from './routes/report.route.js';
-import GenerateCalander from './routes/calenderGenerate.route.js';
+import ReportRoutes from './routes/generateReport.route.js';
+//import GenerateCalander from './routes/calenderGenerate.route.js';
 import UploadStudents from './routes/uploadExcel.route.js';
+
+//Master
+import masterAdminRoutes from './routes/masterAdmin.route.js';
 
 
 dotenv.config();
 const app = express();
-
 //Cors Setup
 app.use(
     cors({
-   origin:'http://localhost:5500',
+   origin:'http://127.0.0.1:5500',
    credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
      allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With']
 })) 
 //Middleware
-app.use(cors());
+
 app.use(express.json());
 
 //Connect to MongoDB
@@ -36,9 +38,10 @@ app.use('/api/auth', authRoutes);
 app.use('/api/students', studentRoutes);
 app.use('/api/attendance', AttendanceRoutes);
 app.use('/api/report', ReportRoutes);
-app.use('/api/calendar', GenerateCalander);
 app.use('/api/upload', UploadStudents);
+app.use('/api/master', masterAdminRoutes)
 
+//app.use('/api/calendar', GenerateCalander);
 //app.get('/',(req,res)=>{
   //  res.send("server Workking")
 //})

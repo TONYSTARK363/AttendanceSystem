@@ -1,14 +1,14 @@
 import express from "express";
 import { generateCalendar } from "../controllers/generateCalendar.controller.js";
 import { verifyToken } from "../middleware/authMiddleware.js";
-import { isAdmin } from "../middleware/IsAdmin.js";
+//import { isAdmin } from "../middleware/DepartmentAdmin.js";
 import Calendar from "../models/calendarSchema.js";
 
 const router = express.Router();
 
 
 //Generate full academic calendar
-router.post("/generate", verifyToken, isAdmin, generateCalendar);
+router.post("/generate", verifyToken, generateCalendar);
 
 
 //Get full calendar
