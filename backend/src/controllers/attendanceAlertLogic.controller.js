@@ -2,14 +2,12 @@ import Attendance from "../models/attendanceSchema.js";
 import Student from "../models/studentSchema.js";
 
 
-// =============================
-// Check which department/year did NOT mark attendance today
-// =============================
+//Check which department/year did NOT mark attendance today
 export const attendanceAlertToday = async (req, res) => {
   try {
     const today = new Date().toISOString().slice(0,10);
 
-    // Get all department/year combinations from students
+    //Get all department/year combinations from students
     const deptYears = await Student.aggregate([
       {
         $group: {
@@ -23,7 +21,7 @@ export const attendanceAlertToday = async (req, res) => {
     for (let dy of deptYears) {
       const { department, year } = dy._id;
 
-      // Check if Attendance exists for this department + year + date
+      //check if Attendance exists for this department + year + date
       const exists = await Attendance.findOne({ department, year, date: today });
       if (!exists) {
         missingClasses.push({ department, year });

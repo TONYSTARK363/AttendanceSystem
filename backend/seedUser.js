@@ -12,12 +12,14 @@ dotenv.config();
 mongoose.connect(process.env.MONGO_URI);
 
 async function createUser() {
-  const hashedPassword = await bcrypt.hash("MasterAdmin123", 10);
+  const hashedPassword = await bcrypt.hash("English123", 10);
 
   await User.create({
-    username: "MasterAdmin",
+    username: "English1",
     password: hashedPassword,
-    role: "masterAdmin",
+    role: "teacher",
+    department: "English",
+    year:1
     });
 
   console.log("User Created" );
