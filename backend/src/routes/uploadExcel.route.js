@@ -7,7 +7,7 @@ import { isDepartmentAdmin } from '../middleware/DepartmentAdmin.js'
 
 const router = express.Router();
 
-const upload = multer({dest: "/uploads"});
+const upload = multer({dest: "uploads"});
 
 router.post('/', verifyToken, isDepartmentAdmin ,upload.single("file") ,uploadStudentsExcel);
 
